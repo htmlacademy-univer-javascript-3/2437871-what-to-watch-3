@@ -1,5 +1,5 @@
 import {Navigate} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from "../../mocks/mocks.ts";
+import {AppRoute, AuthorizationStatus} from '../../mocks/mocks.ts';
 
 type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;

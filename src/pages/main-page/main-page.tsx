@@ -71,14 +71,14 @@ export function MainPage({backgroundSrc, backgroundAlt, title, posterSrc, poster
           <ul className="catalog__genres-list">
             {genresListTypes.map((catalogGenre) => (
               <GenreList key={catalogGenre} title={catalogGenre}
-                            className={catalogGenre === genresListTypes[0] ? 'catalog__genres-item catalog__genres-item--active' : 'catalog__genres-item'}
+                className={catalogGenre === genresListTypes[0] ? 'catalog__genres-item catalog__genres-item--active' : 'catalog__genres-item'}
               />))}
           </ul>
 
           <div className="catalog__films-list">
             {filmCardsDescription.map((film) => (
               <FilmCard key={posterSrc} posterSrc={film.posterSrc} posterAlt={film.posterAlt}
-                        title={film.title}
+                title={film.title}
               />))}
           </div>
 
