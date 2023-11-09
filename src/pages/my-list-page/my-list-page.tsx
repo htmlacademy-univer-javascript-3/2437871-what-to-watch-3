@@ -2,7 +2,7 @@ import {Footer} from '../../components/footer/footer.tsx';
 import {Logo} from '../../components/logo/logo.tsx';
 import {User} from '../../components/user/user.tsx';
 import {myListFilms} from '../../mocks/mocks.ts';
-import {FilmCard, FilmCardProps} from '../../components/film-card/film-card.tsx';
+import {FilmCard} from '../../components/film-card/film-card.tsx';
 
 export function MyListPage() {
   return (
@@ -18,7 +18,7 @@ export function MyListPage() {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          {myListFilms.map((x: FilmCardProps) => <FilmCard key={x.posterSrc} posterSrc={x.posterSrc} posterAlt={x.posterAlt} title={x.title}/>)}
+          {myListFilms.map((film) => <FilmCard key={film.posterSrc} posterSrc={film.posterSrc} posterAlt={film.posterAlt} title={film.title}/>)}
         </div>
       </section>
 

@@ -1,6 +1,22 @@
 import type {FilmCardProps} from '../components/film-card/film-card.tsx';
 
-export const catalogGenresTypes = ['All genres', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror', 'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers'];
+export const genresListTypes = ['All genres', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror', 'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers'];
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
+export enum AppRoute {
+  Login = '/login',
+  Main = '/',
+  MyList = '/mylist',
+  Movie = '/films/:id',
+  Review = '/films/:id/review',
+  Player = '/player/:id',
+  NotFound = '*',
+}
 
 export const filmCardsDescription : FilmCardProps[] = [
   {posterSrc: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg', posterAlt: 'Fantastic Beasts: The Crimes of Grindelwald', title: 'Fantastic Beasts: The Crimes of Grindelwald'},

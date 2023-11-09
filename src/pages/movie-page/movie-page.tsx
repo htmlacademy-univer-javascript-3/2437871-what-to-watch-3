@@ -15,7 +15,7 @@ export type MoviePageProps = {
   year: number;
   ratingScore: string;
   ratingLevel: string;
-  ratingCount: number;
+  ratingCount: string;
   movieDescription: string;
   movieDirector: string;
   movieStarring: string;
@@ -102,7 +102,7 @@ export function MoviePage(props: MoviePageProps) {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            {moreLikeThis.map((x) => <FilmCard key={props.posterSrc} posterSrc={x.posterSrc} posterAlt={x.posterAlt} title={x.title}/>)}
+            {moreLikeThis.map((film) => <FilmCard key={props.posterSrc} posterSrc={film.posterSrc} posterAlt={film.posterAlt} title={film.title}/>)}
           </div>
         </section>
 
