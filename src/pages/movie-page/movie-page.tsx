@@ -1,11 +1,11 @@
 import Footer from '../../components/footer';
 import Logo from '../../components/logo';
 import User from '../../components/user';
-import CardsNavigation from '../../components/cards-navigation';
 import {Link, useParams} from 'react-router-dom';
 import FilmsContainer from '../../components/films-container';
 import {Films} from '../../types/types.ts';
-import {AppRoute} from '../../mocks/mocks.ts';
+import {AppRoute} from '../../constants.ts';
+import Tabs from '../../components/tabs';
 
 export type MoviePageProps = {
   backgroundSrc: string;
@@ -70,25 +70,7 @@ export function MoviePage({backgroundSrc, backgroundAlt, myListFilmsCount, films
               />
             </div>
 
-            <div className="film-card__desc">
-              <CardsNavigation/>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{film.ratingScore}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">{film.ratingLevel}</span>
-                  <span className="film-rating__count">{film.ratingCount}</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                {film.movieDescription}
-
-                <p className="film-card__director"><strong>{film.movieDirector}</strong></p>
-
-                <p className="film-card__starring"><strong>{film.movieStarring}</strong></p>
-              </div>
-            </div>
+            <Tabs film={film} />
           </div>
         </div>
       </section>

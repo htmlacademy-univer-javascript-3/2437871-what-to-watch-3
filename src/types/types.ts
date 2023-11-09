@@ -12,6 +12,18 @@ export type Film = {
   movieDirector: string;
   movieStarring: string;
   video: string;
+  runTime: string;
+  released: number;
 }
 
 export type Films = Film[];
+
+export type Review = {
+  id: string;
+  rating: number;
+  comment: string;
+  date: string;
+  author: string;
+}
+
+export type Reviews = Review[];

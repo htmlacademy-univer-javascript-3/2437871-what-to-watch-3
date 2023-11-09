@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from './mocks/mocks.ts';
+import {AppRoute, AuthorizationStatus} from './constants.ts';
 import MainPage from './pages/main-page';
 import SignInPage from './pages/sing-in-page';
 import PrivateRoute from './components/private-route/private-route.tsx';
