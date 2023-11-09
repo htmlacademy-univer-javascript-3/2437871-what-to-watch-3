@@ -9,7 +9,7 @@ type PlayerPageProps = {
 export function PlayerPage({films}: PlayerPageProps) {
   const params = useParams();
   const navigate = useNavigate();
-  const film = films.filter((film) => film.id === params.id)[0];
+  const film = films.filter((f) => f.id === params.id)[0];
 
   return (
     <div className="player">

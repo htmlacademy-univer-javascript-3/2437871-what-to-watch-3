@@ -13,7 +13,7 @@ export type AddReviewPageProps = {
 
 export function AddReviewScreen({backgroundSrc, backgroundAlt, films}: AddReviewPageProps) {
   const params = useParams();
-  const film = films.filter((film) => film.id === params.id)[0];
+  const film = films.filter((f) => f.id === params.id)[0];
 
   return (
     <section className="film-card film-card--full">

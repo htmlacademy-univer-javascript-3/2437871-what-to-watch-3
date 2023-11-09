@@ -13,7 +13,7 @@ export function FilmsContainer({films}: FilmsContainerProps) {
     <div className="catalog__films-list">
       {films.map((film) => (
         <FilmCard key={film.id} id={film.id} posterSrc={film.posterSrc} posterAlt={film.posterAlt}
-                  title={film.title} onMouseEnter={setCurrentFilm} onMouseLeave={() => setCurrentFilm(null)}
+          title={film.title} onMouseEnter={setCurrentFilm} onMouseLeave={() => setCurrentFilm(null)}
         />))}
     </div>
   );

@@ -16,7 +16,7 @@ export type MoviePageProps = {
 
 export function MoviePage({backgroundSrc, backgroundAlt, myListFilmsCount, films}: MoviePageProps) {
   const params = useParams();
-  const film = films.filter((film) => film.id === params.id)[0];
+  const film = films.filter((f) => f.id === params.id)[0];
 
   return (
     <>
