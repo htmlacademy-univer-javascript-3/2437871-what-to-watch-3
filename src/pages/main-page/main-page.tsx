@@ -1,21 +1,20 @@
-import {Footer} from '../../components/footer/footer.tsx';
-import {genresListTypes, filmCardsDescription} from '../../mocks/mocks.ts';
-import {FilmCard} from '../../components/film-card/film-card.tsx';
-import {Logo} from '../../components/logo/logo.tsx';
-import {User} from '../../components/user/user.tsx';
+import Footer from '../../components/footer';
+import {genresListTypes} from '../../mocks/mocks.ts';
+import Logo from '../../components/logo';
+import User from '../../components/user';
 import GenreList from '../../components/genre-list';
+import FilmsContainer from '../../components/films-container';
+import {Film, Films} from '../../types/types.ts';
 
 export type MainPageProps = {
   backgroundSrc: string;
   backgroundAlt: string;
-  title: string;
-  posterSrc: string;
-  posterAlt: string;
-  genre: string;
-  year: number;
+  films: Films;
+  mainFilm: Film;
+  myListFilmsCount: number;
 }
 
-export function MainPage({backgroundSrc, backgroundAlt, title, posterSrc, posterAlt, genre, year}: MainPageProps){
+export function MainPage({backgroundSrc, backgroundAlt, films, mainFilm, myListFilmsCount}: MainPageProps){
   return (
     <>
       <section className="film-card">
@@ -32,16 +31,16 @@ export function MainPage({backgroundSrc, backgroundAlt, title, posterSrc, poster
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={posterSrc} alt={posterAlt} width="218"
+              <img src={mainFilm.posterSrc} alt={mainFilm.posterAlt} width="218"
                 height="327"
               />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{mainFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__genre">{mainFilm.genre}</span>
+                <span className="film-card__year">{mainFilm.year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -55,7 +54,7 @@ export function MainPage({backgroundSrc, backgroundAlt, title, posterSrc, poster
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
-                  <span>My list</span>
+                  <span className="film-card__count">{myListFilmsCount}</span>
                   <span className="film-card__count">9</span>
                 </button>
               </div>
@@ -75,12 +74,7 @@ export function MainPage({backgroundSrc, backgroundAlt, title, posterSrc, poster
               />))}
           </ul>
 
-          <div className="catalog__films-list">
-            {filmCardsDescription.map((film) => (
-              <FilmCard key={posterSrc} posterSrc={film.posterSrc} posterAlt={film.posterAlt}
-                title={film.title}
-              />))}
-          </div>
+          <FilmsContainer films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
