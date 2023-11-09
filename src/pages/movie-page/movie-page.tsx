@@ -1,33 +1,29 @@
-import {Footer} from '../../components/footer/footer.tsx';
-import {moreLikeThis} from '../../mocks/mocks.ts';
-import {FilmCard} from '../../components/film-card/film-card.tsx';
-import {Logo} from '../../components/logo/logo.tsx';
-import {User} from '../../components/user/user.tsx';
+import Footer from '../../components/footer';
+import Logo from '../../components/logo';
+import User from '../../components/user';
 import CardsNavigation from '../../components/cards-navigation';
+import {Link, useParams} from 'react-router-dom';
+import FilmsContainer from '../../components/films-container';
+import {Films} from '../../types/types.ts';
+import {AppRoute} from '../../mocks/mocks.ts';
 
 export type MoviePageProps = {
   backgroundSrc: string;
   backgroundAlt: string;
-  title: string;
-  posterSrc: string;
-  posterAlt: string;
-  genre: string;
-  year: number;
-  ratingScore: string;
-  ratingLevel: string;
-  ratingCount: string;
-  movieDescription: string;
-  movieDirector: string;
-  movieStarring: string;
+  films: Films;
+  myListFilmsCount: number;
 }
 
-export function MoviePage(props: MoviePageProps) {
+export function MoviePage({backgroundSrc, backgroundAlt, myListFilmsCount, films}: MoviePageProps) {
+  const params = useParams();
+  const film = films.filter((f) => f.id === params.id)[0];
+
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={props.backgroundSrc} alt={props.backgroundAlt}/>
+            <img src={backgroundSrc} alt={backgroundAlt}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -40,10 +36,10 @@ export function MoviePage(props: MoviePageProps) {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{props.title}</h2>
+              <h2 className="film-card__title">{film.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{props.genre}</span>
-                <span className="film-card__year">{props.year}</span>
+                <span className="film-card__genre">{film.genre}</span>
+                <span className="film-card__year">{film.year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -57,10 +53,10 @@ export function MoviePage(props: MoviePageProps) {
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
-                  <span>My list</span>
+                  <span className="film-card__count">{myListFilmsCount}</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to={`${AppRoute.Movie }/${film.id}${ AppRoute.Review}`} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -69,7 +65,7 @@ export function MoviePage(props: MoviePageProps) {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={props.posterSrc} alt={props.posterAlt} width="218"
+              <img src={film.posterSrc} alt={film.posterAlt} width="218"
                 height="327"
               />
             </div>
@@ -78,19 +74,19 @@ export function MoviePage(props: MoviePageProps) {
               <CardsNavigation/>
 
               <div className="film-rating">
-                <div className="film-rating__score">{props.ratingScore}</div>
+                <div className="film-rating__score">{film.ratingScore}</div>
                 <p className="film-rating__meta">
-                  <span className="film-rating__level">{props.ratingLevel}</span>
-                  <span className="film-rating__count">{props.ratingCount}</span>
+                  <span className="film-rating__level">{film.ratingLevel}</span>
+                  <span className="film-rating__count">{film.ratingCount}</span>
                 </p>
               </div>
 
               <div className="film-card__text">
-                {props.movieDescription}
+                {film.movieDescription}
 
-                <p className="film-card__director"><strong>{props.movieDirector}</strong></p>
+                <p className="film-card__director"><strong>{film.movieDirector}</strong></p>
 
-                <p className="film-card__starring"><strong>{props.movieStarring}</strong></p>
+                <p className="film-card__starring"><strong>{film.movieStarring}</strong></p>
               </div>
             </div>
           </div>
@@ -101,9 +97,7 @@ export function MoviePage(props: MoviePageProps) {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__films-list">
-            {moreLikeThis.map((film) => <FilmCard key={props.posterSrc} posterSrc={film.posterSrc} posterAlt={film.posterAlt} title={film.title}/>)}
-          </div>
+          <FilmsContainer films={films}/>
         </section>
 
         <Footer/>

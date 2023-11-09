@@ -1,16 +1,20 @@
-import {User} from '../../components/user/user.tsx';
-import {Logo} from '../../components/logo/logo.tsx';
-import {AddReview} from '../../components/add-review/add-review.tsx';
+import User from '../../components/user';
+import Logo from '../../components/logo';
+import AddReview from '../../components/add-review';
+import {Films} from '../../types/types.ts';
+import {Link, useParams} from 'react-router-dom';
+import {AppRoute} from '../../mocks/mocks.ts';
 
 export type AddReviewPageProps = {
   backgroundSrc: string;
   backgroundAlt: string;
-  title: string;
-  posterSrc: string;
-  posterAlt: string;
+  films: Films;
 }
 
-export function AddReviewScreen({backgroundSrc, backgroundAlt, title, posterSrc, posterAlt}: AddReviewPageProps) {
+export function AddReviewScreen({backgroundSrc, backgroundAlt, films}: AddReviewPageProps) {
+  const params = useParams();
+  const film = films.filter((f) => f.id === params.id)[0];
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -26,7 +30,7 @@ export function AddReviewScreen({backgroundSrc, backgroundAlt, title, posterSrc,
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{title}</a>
+                <Link to={`${AppRoute.Movie }/${film.id}`} className="breadcrumbs__link">{film.title}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -38,7 +42,7 @@ export function AddReviewScreen({backgroundSrc, backgroundAlt, title, posterSrc,
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={posterSrc} alt={posterAlt} width="218" height="327"/>
+          <img src={film.posterSrc} alt={film.posterAlt} width="218" height={327}/>
         </div>
       </div>
 

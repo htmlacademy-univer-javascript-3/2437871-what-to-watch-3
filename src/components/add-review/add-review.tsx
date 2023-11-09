@@ -1,4 +1,7 @@
+import {useState} from 'react';
+
 export function AddReview() {
+  const [text, setText] = useState<string>('');
   return (
     <div className="add-review">
       <form action="#" className="add-review__form">
@@ -15,7 +18,7 @@ export function AddReview() {
 
         <div className="add-review__text">
           <textarea className="add-review__textarea" name="review-text" id="review-text"
-            placeholder="Review text"
+            placeholder="Review text" value={text} onChange={(evt) => setText(evt.target.value)}
           />
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">Post</button>

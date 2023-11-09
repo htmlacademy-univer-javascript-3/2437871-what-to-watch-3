@@ -1,6 +1,6 @@
-import {Footer} from '../../components/footer/footer.tsx';
-import {Logo} from '../../components/logo/logo.tsx';
-import {SignInForm} from '../../components/sing-in-form/sing-in-form.tsx';
+import Footer from '../../components/footer';
+import Logo from '../../components/logo';
+import { SignInForm } from '../../components/sing-in-form/sing-in-form.tsx';
 
 export function SignInPage() {
   return (

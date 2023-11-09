@@ -1,25 +1,28 @@
-import {Footer} from '../../components/footer/footer.tsx';
-import {Logo} from '../../components/logo/logo.tsx';
-import {User} from '../../components/user/user.tsx';
-import {myListFilms} from '../../mocks/mocks.ts';
-import {FilmCard} from '../../components/film-card/film-card.tsx';
+import Footer from '../../components/footer';
+import Logo from '../../components/logo';
+import User from '../../components/user';
+import {Films} from '../../types/types.ts';
+import FilmsContainer from '../../components/films-container';
 
-export function MyListPage() {
+type MyListPageProps = {
+  films: Films;
+  myListFilmsCount: number;
+}
+
+export function MyListPage({films, myListFilmsCount}: MyListPageProps) {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <Logo/>
 
-        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
+        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{myListFilmsCount}</span></h1>
         <User/>
       </header>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list">
-          {myListFilms.map((film) => <FilmCard key={film.posterSrc} posterSrc={film.posterSrc} posterAlt={film.posterAlt} title={film.title}/>)}
-        </div>
+        <FilmsContainer films={films}/>
       </section>
 
       <Footer/>
