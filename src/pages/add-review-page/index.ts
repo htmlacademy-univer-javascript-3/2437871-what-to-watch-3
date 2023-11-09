@@ -1,4 +1,4 @@
-import { AddReviewScreen } from './add-review-screen.tsx';
+import { AddReviewPage } from './add-review-page.tsx';
 export * from '.';
 
-export default AddReviewScreen;
+export default AddReviewPage;

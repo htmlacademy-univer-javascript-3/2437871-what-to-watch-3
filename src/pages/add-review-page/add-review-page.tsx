@@ -11,7 +11,7 @@ export type AddReviewPageProps = {
   films: Films;
 }
 
-export function AddReviewScreen({backgroundSrc, backgroundAlt, films}: AddReviewPageProps) {
+export function AddReviewPage({backgroundSrc, backgroundAlt, films}: AddReviewPageProps) {
   const params = useParams();
   const film = films.filter((f) => f.id === params.id)[0];
 
