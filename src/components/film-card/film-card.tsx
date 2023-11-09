@@ -1,27 +1,42 @@
-import {useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../mocks/mocks.ts';
+import VideoPlayer from '../video-player';
+import {useState} from 'react';
 
 export type FilmCardProps = {
   id: string;
   posterSrc: string;
   posterAlt: string;
   title: string;
-  onMouseEnter: (x: string) => void;
-  onMouseLeave: () => void;
+  videoLink: string;
 }
 
-export function FilmCard({id, posterSrc, posterAlt, title, onMouseEnter, onMouseLeave}: FilmCardProps) {
-  const navigate = useNavigate();
+export function FilmCard({id, posterSrc, posterAlt, title, videoLink}: FilmCardProps) {
+  const [timer, setTimer] = useState<NodeJS.Timeout | undefined>(undefined);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
+  const onMouseEnter = () => {
+    setTimer(setTimeout(() => setIsHovered(true), 1000));
+  };
+
+  const onMouseLeave = () => {
+    clearTimeout(timer);
+    setIsHovered(false);
+  };
+
   return (
-    <article className="small-film-card catalog__films-card" onMouseEnter={() => onMouseEnter(id)}
-      onMouseLeave={() => onMouseLeave()} onClick={() => navigate(`/films/${id}`)}
+    <article className="small-film-card catalog__films-card" onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div className="small-film-card__image">
-        <img src={posterSrc}
-          alt={posterAlt}
-        />
+        {
+          isHovered ?
+            <VideoPlayer videoLink={videoLink} posterSrc={posterSrc}/> :
+            <img src={posterSrc} alt={posterAlt}/>
+        }
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link">{title}</a>
+        <Link to={`${AppRoute.Movie }/${id}`} className="small-film-card__link">{title}</Link>
       </h3>
     </article>
   );

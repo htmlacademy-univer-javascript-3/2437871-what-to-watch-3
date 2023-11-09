@@ -14,7 +14,7 @@ export const mockFilms: Film[] = [
     movieDescription: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort',
     movieDirector: 'Director: Wes Anderson',
     movieStarring: 'Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: '2',
@@ -29,7 +29,7 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: '3',
@@ -44,7 +44,7 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: '4',
@@ -59,7 +59,7 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: '5',
@@ -74,7 +74,7 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: '6',
@@ -89,7 +89,7 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: '7',
@@ -104,7 +104,7 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: '8',
@@ -119,7 +119,7 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     id: '9',
@@ -134,6 +134,6 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
-    video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
 ];
