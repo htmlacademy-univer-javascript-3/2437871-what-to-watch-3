@@ -1,5 +1,5 @@
 import Footer from '../../components/footer';
-import {genresListTypes} from '../../mocks/mocks.ts';
+import {genresListTypes} from '../../constants.ts';
 import Logo from '../../components/logo';
 import User from '../../components/user';
 import GenreList from '../../components/genre-list';

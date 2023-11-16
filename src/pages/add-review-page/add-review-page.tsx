@@ -3,7 +3,7 @@ import Logo from '../../components/logo';
 import AddReview from '../../components/add-review';
 import {Films} from '../../types/types.ts';
 import {Link, useParams} from 'react-router-dom';
-import {AppRoute} from '../../mocks/mocks.ts';
+import {AppRoute} from '../../constants.ts';
 
 export type AddReviewPageProps = {
   backgroundSrc: string;

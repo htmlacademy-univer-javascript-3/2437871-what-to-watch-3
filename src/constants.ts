@@ -15,3 +15,9 @@ export enum AppRoute {
   Player = '/player',
   NotFound = '*',
 }
+
+export enum TabEnum {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews',
+}

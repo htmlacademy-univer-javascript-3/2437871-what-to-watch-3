@@ -14,6 +14,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort',
     movieDirector: 'Director: Wes Anderson',
     movieStarring: 'Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
@@ -29,6 +31,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
@@ -44,6 +48,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
@@ -59,6 +65,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
@@ -74,6 +82,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
@@ -89,6 +99,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
@@ -104,6 +116,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
@@ -119,6 +133,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
@@ -134,6 +150,8 @@ export const mockFilms: Film[] = [
     movieDescription: 'xxxxxxx',
     movieDirector: 'Director: xxxxxx',
     movieStarring: 'Starring: xxxxx',
+    runTime: '1h 39m',
+    released: 2014,
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
 ];

@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../mocks/mocks.ts';
+import {AppRoute} from '../../constants.ts';
 import VideoPlayer from '../video-player';
 import {useState} from 'react';
 
