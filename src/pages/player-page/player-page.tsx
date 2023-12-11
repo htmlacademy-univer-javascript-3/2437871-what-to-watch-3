@@ -1,19 +1,16 @@
 import {useNavigate, useParams} from 'react-router-dom';
-import {Films} from '../../types/types.ts';
 import {AppRoute} from '../../constants.ts';
+import {useAppSelector} from '../../hooks';
 
-type PlayerPageProps = {
-  films: Films;
-}
-
-export function PlayerPage({films}: PlayerPageProps) {
+export function PlayerPage() {
   const params = useParams();
   const navigate = useNavigate();
+  const films = useAppSelector((state) => state.films);
   const film = films.filter((f) => f.id === params.id)[0];
 
   return (
     <div className="player">
-      <video src={film.video} className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={film.previewVideoLink} className="player__video" poster={film.previewImage}></video>
 
       <button type="button" className="player__exit" onClick={() => navigate(`${AppRoute.Movie }/${film.id}`)}>Exit</button>
 

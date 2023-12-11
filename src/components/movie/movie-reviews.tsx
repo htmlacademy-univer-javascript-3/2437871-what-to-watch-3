@@ -1,4 +1,4 @@
-import {Reviews} from '../../types/types.ts';
+import {Reviews} from '../../types/review.ts';
 
 type MovieReviewsProps = {
   reviews: Reviews;
@@ -14,7 +14,7 @@ function MovieReviews({reviews}: MovieReviewsProps) {
               <p className="review__text">{review.comment}</p>
 
               <footer className="review__details">
-                <cite className="review__author">{review.author}</cite>
+                <cite className="review__author">{review.user}</cite>
                 <time className="review__date" dateTime={review.date}>{review.date}</time>
               </footer>
             </blockquote>

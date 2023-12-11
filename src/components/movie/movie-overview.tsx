@@ -1,4 +1,4 @@
-import {Film} from '../../types/types.ts';
+import {Film} from '../../types/film.ts';
 
 type MovieOverviewProps = {
   film: Film;
@@ -8,19 +8,19 @@ function MovieOverview({film}: MovieOverviewProps) {
   return (
     <>
       <div className="film-rating">
-        <div className="film-rating__score">{film.ratingScore}</div>
+        <div className="film-rating__score">{film.rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">{film.ratingLevel}</span>
-          <span className="film-rating__count">{film.ratingCount}</span>
+          <span className="film-rating__level">{film.scoresCount}</span>
+          <span className="film-rating__count">{film.scoresCount}</span>
         </p>
       </div>
 
       <div className="film-card__text">
-        {film.movieDescription}
+        {film.description}
 
-        <p className="film-card__director"><strong>{film.movieDirector}</strong></p>
+        <p className="film-card__director"><strong>{film.director}</strong></p>
 
-        <p className="film-card__starring"><strong>{film.movieStarring}</strong></p>
+        <p className="film-card__starring"><strong>{film.starring.join(' ')}</strong></p>
       </div>
     </>
   );
