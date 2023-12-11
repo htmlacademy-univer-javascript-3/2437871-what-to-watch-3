@@ -13,8 +13,8 @@ root.render(
   <Provider store={store}>
     <React.StrictMode>
       <App backgroundSrc={'img/bg-the-grand-budapest-hotel.jpg'}
-           backgroundAlt={'The Grand Budapest Hotel'}
-           films={mockFilms} myListFilmsCount={9}
+        backgroundAlt={'The Grand Budapest Hotel'}
+        films={mockFilms} myListFilmsCount={9}
       />
     </React.StrictMode>
   </Provider>

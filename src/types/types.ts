@@ -29,6 +29,7 @@ export type Review = {
 export type Reviews = Review[];
 
 export type StoreState = {
-  genre: string;
+  selectedGenre: string;
   films: Films;
+  filmsCount: number;
 };

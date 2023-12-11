@@ -25,3 +25,5 @@ export enum TabEnum {
 export const INITIAL_GENRE = 'All genres';
 
 export const EXECUTION_DELAY = 1000;
+
+export const INITIAL_FILMS_COUNT = 8;

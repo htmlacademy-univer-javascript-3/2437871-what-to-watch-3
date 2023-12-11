@@ -7,7 +7,7 @@ export type GenreListProps = {
 }
 
 export function GenreList({genres} : GenreListProps) {
-  const selectedGenre = useAppSelector((state) => state.genre);
+  const selectedGenre = useAppSelector((state) => state.selectedGenre);
   const dispatch = useAppDispatch();
   return (
     <>
