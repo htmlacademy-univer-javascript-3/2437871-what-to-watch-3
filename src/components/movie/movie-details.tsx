@@ -31,7 +31,7 @@ function MovieDetails({film}: MovieDetailsProps) {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{film.released}</span>
+          <span className="film-card__details-value">{film.year}</span>
         </p>
       </div>
     </div>);
