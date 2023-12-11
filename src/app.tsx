@@ -24,7 +24,7 @@ function App({backgroundSrc, backgroundAlt, myListFilmsCount, films}: AppProps) 
         <Route path={AppRoute.Main} element={
           <MainPage backgroundSrc={backgroundSrc}
             backgroundAlt={backgroundAlt}
-            films={films} mainFilm={films[0]}
+            mainFilm={films[0]}
             myListFilmsCount={myListFilmsCount}
           />
         }

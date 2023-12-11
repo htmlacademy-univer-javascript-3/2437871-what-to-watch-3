@@ -1,6 +1,6 @@
-import {Film} from '../types/types.ts';
+import {Films} from '../types/types.ts';
 
-export const mockFilms: Film[] = [
+export const mockFilms: Films = [
   {
     id: '1',
     title: 'The Grand Budapest Hotel',
@@ -24,7 +24,7 @@ export const mockFilms: Film[] = [
     posterAlt: 'Fantastic Beasts: The Crimes of Grindelwald',
     title: 'Fantastic Beasts: The Crimes of Grindelwald',
     year: 2014,
-    genre: 'drama',
+    genre: 'Dramas',
     ratingScore:'8,9',
     ratingLevel: 'Very good',
     ratingCount: '240 ratings',
@@ -109,7 +109,7 @@ export const mockFilms: Film[] = [
     posterAlt: 'What We Do in the Shadows',
     title: 'What We Do in the Shadows',
     year: 2014,
-    genre: 'drama',
+    genre: 'Comedies',
     ratingScore:'8,9',
     ratingLevel: 'Very good',
     ratingCount: '240 ratings',

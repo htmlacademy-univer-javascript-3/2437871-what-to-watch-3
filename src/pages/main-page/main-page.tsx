@@ -1,20 +1,29 @@
 import Footer from '../../components/footer';
-import {genresListTypes} from '../../constants.ts';
 import Logo from '../../components/logo';
 import User from '../../components/user';
-import GenreList from '../../components/genre-list';
+import GenresList from '../../components/genre-list';
 import FilmsContainer from '../../components/films-container';
-import {Film, Films} from '../../types/types.ts';
+import {Film} from '../../types/types.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {getFilms} from '../../store/action.ts';
+import {genresListTypes} from "../../constants.ts";
 
 export type MainPageProps = {
   backgroundSrc: string;
   backgroundAlt: string;
-  films: Films;
   mainFilm: Film;
   myListFilmsCount: number;
 }
 
-export function MainPage({backgroundSrc, backgroundAlt, films, mainFilm, myListFilmsCount}: MainPageProps){
+export function MainPage({backgroundSrc, backgroundAlt, mainFilm, myListFilmsCount}: MainPageProps){
+  const dispatch = useAppDispatch();
+  const filmsByGenre = useAppSelector((state) => state.films);
+  const selectedGenre = useAppSelector((state) => state.genre);
+
+  useEffect(() => {
+    dispatch(getFilms());
+  }, [selectedGenre, dispatch]);
   return (
     <>
       <section className="film-card">
@@ -65,16 +74,8 @@ export function MainPage({backgroundSrc, backgroundAlt, films, mainFilm, myListF
 
       <div className="page-content">
         <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            {genresListTypes.map((catalogGenre) => (
-              <GenreList key={catalogGenre} title={catalogGenre}
-                className={catalogGenre === genresListTypes[0] ? 'catalog__genres-item catalog__genres-item--active' : 'catalog__genres-item'}
-              />))}
-          </ul>
-
-          <FilmsContainer films={films}/>
+          <GenresList genres={genresListTypes}/>
+          <FilmsContainer films={filmsByGenre}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

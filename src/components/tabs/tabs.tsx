@@ -16,7 +16,7 @@ type TabProps = {
 function Tab({isActive, onClick, text}: TabProps) {
   return (
     <li className={cn('film-nav__item', {'film-nav__item--active': isActive})}>
-      <a className="film-nav__link" onClick={onClick}>{text}</a>
+      <button className="film-nav__link" onClick={onClick}>{text}</button>
     </li>
   );
 }

@@ -21,3 +21,7 @@ export enum TabEnum {
   Details = 'Details',
   Reviews = 'Reviews',
 }
+
+export const INITIAL_GENRE = 'All genres';
+
+export const EXECUTION_DELAY = 1000;
