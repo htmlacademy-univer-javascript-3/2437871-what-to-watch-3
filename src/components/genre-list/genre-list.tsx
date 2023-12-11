@@ -1,14 +1,25 @@
+import cn from 'classnames';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {changeGenre} from '../../store/action.ts';
+
 export type GenreListProps = {
-  title: string;
-  className: string;
+  genres: string[];
 }
 
-export function GenreList({title, className} : GenreListProps) {
+export function GenreList({genres} : GenreListProps) {
+  const selectedGenre = useAppSelector((state) => state.genre);
+  const dispatch = useAppDispatch();
   return (
-    <li className={className}>
-      <a href="#" className="catalog__genres-link">{title}</a>
-    </li>
+    <>
+      <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+      <ul className="catalog__genres-list">
+        {genres.map((genre) => (
+          <li key={genre} className={cn('catalog__genres-item', {'catalog__genres-item--active': genre === selectedGenre})}>
+            <button className="catalog__genres-link" onClick={() => dispatch(changeGenre(genre))}>{genre}</button>
+          </li>
+        ))}
+      </ul>
+    </>
   );
-}
-export default class CatalogGenre {
 }
