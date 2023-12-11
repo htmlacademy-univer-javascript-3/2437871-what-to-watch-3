@@ -7,7 +7,8 @@ import {Film} from '../../types/types.ts';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {getFilms} from '../../store/action.ts';
-import {genresListTypes} from "../../constants.ts";
+import {genresListTypes} from '../../constants.ts';
+import ShowMore from '../../components/show-more';
 
 export type MainPageProps = {
   backgroundSrc: string;
@@ -18,8 +19,7 @@ export type MainPageProps = {
 
 export function MainPage({backgroundSrc, backgroundAlt, mainFilm, myListFilmsCount}: MainPageProps){
   const dispatch = useAppDispatch();
-  const filmsByGenre = useAppSelector((state) => state.films);
-  const selectedGenre = useAppSelector((state) => state.genre);
+  const {films, selectedGenre, filmsCount} = useAppSelector((state) => state);
 
   useEffect(() => {
     dispatch(getFilms());
@@ -75,11 +75,8 @@ export function MainPage({backgroundSrc, backgroundAlt, mainFilm, myListFilmsCou
       <div className="page-content">
         <section className="catalog">
           <GenresList genres={genresListTypes}/>
-          <FilmsContainer films={filmsByGenre}/>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <FilmsContainer films={films}/>
+          {films.length >= filmsCount && <ShowMore/>}
         </section>
 
         <Footer/>
