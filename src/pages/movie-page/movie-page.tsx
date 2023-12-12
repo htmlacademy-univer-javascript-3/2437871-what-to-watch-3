@@ -3,19 +3,12 @@ import Logo from '../../components/logo';
 import User from '../../components/user';
 import {Link, useParams} from 'react-router-dom';
 import FilmsContainer from '../../components/films-container';
-import {Films} from '../../types/types.ts';
 import {AppRoute} from '../../constants.ts';
-import Tabs from '../../components/tabs';
+import {useAppSelector} from '../../hooks';
 
-export type MoviePageProps = {
-  backgroundSrc: string;
-  backgroundAlt: string;
-  films: Films;
-  myListFilmsCount: number;
-}
-
-export function MoviePage({backgroundSrc, backgroundAlt, myListFilmsCount, films}: MoviePageProps) {
+export function MoviePage() {
   const params = useParams();
+  const films = useAppSelector((state) => state.films);
   const film = films.filter((f) => f.id === params.id)[0];
 
   return (
@@ -23,7 +16,7 @@ export function MoviePage({backgroundSrc, backgroundAlt, myListFilmsCount, films
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={backgroundSrc} alt={backgroundAlt}/>
+            <img src={film.previewImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -36,7 +29,7 @@ export function MoviePage({backgroundSrc, backgroundAlt, myListFilmsCount, films
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film.title}</h2>
+              <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
                 <span className="film-card__year">{film.year}</span>
@@ -53,7 +46,7 @@ export function MoviePage({backgroundSrc, backgroundAlt, myListFilmsCount, films
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
-                  <span className="film-card__count">{myListFilmsCount}</span>
+                  <span className="film-card__count">{9}</span>
                   <span className="film-card__count">9</span>
                 </button>
                 <Link to={`${AppRoute.Movie }/${film.id}${ AppRoute.Review}`} className="btn film-card__button">Add review</Link>
@@ -65,12 +58,12 @@ export function MoviePage({backgroundSrc, backgroundAlt, myListFilmsCount, films
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.posterSrc} alt={film.posterAlt} width="218"
+              <img src={film.previewImage} alt={film.name} width="218"
                 height="327"
               />
             </div>
 
-            <Tabs film={film} />
+            {/*<Tabs film={film} />*/}
           </div>
         </div>
       </section>

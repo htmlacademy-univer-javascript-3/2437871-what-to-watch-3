@@ -1,4 +1,4 @@
-import {Film} from '../../types/types.ts';
+import {Film} from '../../types/film.ts';
 
 type MovieDetailsProps = {
   film: Film;
@@ -10,11 +10,13 @@ function MovieDetails({film}: MovieDetailsProps) {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Director</strong>
-          <span className="film-card__details-value">{film.movieDirector}</span>
+          <span className="film-card__details-value">{film.director}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
-          <span className="film-card__details-value">{film.movieStarring}</span>
+          <span className="film-card__details-value">{film.starring
+            .map((actor) => <>{actor}<br/></>)}
+          </span>
         </p>
       </div>
 
@@ -29,7 +31,7 @@ function MovieDetails({film}: MovieDetailsProps) {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{film.released}</span>
+          <span className="film-card__details-value">{film.year}</span>
         </p>
       </div>
     </div>);
