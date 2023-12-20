@@ -10,8 +10,7 @@ import ShowMore from '../../components/show-more';
 
 export function MainPage(){
   const dispatch = useAppDispatch();
-  const {filmsByGenre, selectedGenre, filmsCount, promoFilm} = useAppSelector((state) => state);
-
+  const {filmsByGenre, selectedGenre, filmsCount, promoFilm, favoriteFilmsCount} = useAppSelector((state) => state);
   useEffect(() => {
     dispatch(getFilms());
   }, [selectedGenre, dispatch]);
@@ -52,8 +51,7 @@ export function MainPage(){
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
-                  <span className="film-card__count">{9}</span>
-                  <span className="film-card__count">9</span>
+                  <span className="film-card__count">{favoriteFilmsCount}</span>
                 </button>
               </div>
             </div>

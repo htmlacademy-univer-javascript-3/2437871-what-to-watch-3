@@ -1,10 +1,14 @@
-import {Reviews} from '../../types/review.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {fetchReviewsAction} from '../../store/api-actions.ts';
 
-type MovieReviewsProps = {
-  reviews: Reviews;
-}
+function MovieReviews() {
+  const {selectedFilm, reviews} = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchReviewsAction(selectedFilm?.id));
+  }, [dispatch, selectedFilm]);
 
-function MovieReviews({reviews}: MovieReviewsProps) {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
