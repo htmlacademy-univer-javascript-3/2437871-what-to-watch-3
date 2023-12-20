@@ -3,20 +3,38 @@ import Logo from '../../components/logo';
 import User from '../../components/user';
 import {Link, useParams} from 'react-router-dom';
 import FilmsContainer from '../../components/films-container';
-import {AppRoute} from '../../constants.ts';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {fetchFilmAction, fetchSimilarFilmsAction} from '../../store/api-actions.ts';
+import PageNotFoundError from '../../components/errors/page-not-found';
+import Tabs from '../../components/tabs';
+import {AppRoute, AuthorizationStatus} from '../../constants.ts';
 
 export function MoviePage() {
   const params = useParams();
-  const films = useAppSelector((state) => state.films);
-  const film = films.filter((f) => f.id === params.id)[0];
+  const dispatch = useAppDispatch();
+
+  const film = useAppSelector((state) => state.selectedFilm);
+  const similarFilms = useAppSelector((state) => state.similarFilms);
+  const favoritesCount = useAppSelector((state) => state.favoriteFilmsCount);
+  const status = useAppSelector((state) => state.authorizationStatus);
+
+
+  useEffect(() => {
+    dispatch(fetchFilmAction(params.id));
+    dispatch(fetchSimilarFilmsAction(params.id));
+  }, [dispatch, params]);
+
+  if (film === null) {
+    return (<PageNotFoundError/>);
+  }
 
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.previewImage} alt={film.name}/>
+            <img src={film.backgroundImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -46,10 +64,12 @@ export function MoviePage() {
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
-                  <span className="film-card__count">{9}</span>
-                  <span className="film-card__count">9</span>
+                  <span className="film-card__count">{favoritesCount}</span>
                 </button>
-                <Link to={`${AppRoute.Movie }/${film.id}${ AppRoute.Review}`} className="btn film-card__button">Add review</Link>
+                {status === AuthorizationStatus.Auth &&
+                  <Link to={`${AppRoute.Movie}/${film.id}${AppRoute.Review}`} className="btn film-card__button">Add
+                    review
+                  </Link>}
               </div>
             </div>
           </div>
@@ -58,12 +78,12 @@ export function MoviePage() {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.previewImage} alt={film.name} width="218"
+              <img src={film.posterImage} alt={film.name} width="218"
                 height="327"
               />
             </div>
 
-            {/*<Tabs film={film} />*/}
+            <Tabs film={film}/>
           </div>
         </div>
       </section>
@@ -72,7 +92,7 @@ export function MoviePage() {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsContainer films={films}/>
+          <FilmsContainer films={similarFilms}/>
         </section>
 
         <Footer/>

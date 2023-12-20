@@ -1,8 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
   changeGenre,
-  getFilms, getUser,
-  loadFilms, requireAuthorization,
+  getFilms, getUser, loadFavoriteFilms, loadFilm,
+  loadFilms, loadReviews, loadSimilarFilms, requireAuthorization,
   resetShowMore,
   setLoadingStatus,
   setPromoFilm,
@@ -15,6 +15,9 @@ const initialState : StoreState = {
   isLoading: false,
   promoFilm: null,
   selectedFilm: null,
+  similarFilms: [],
+  favoriteFilms: [],
+  favoriteFilmsCount: 0,
   selectedGenre: INITIAL_GENRE,
   films: [],
   filmsByGenre: [],
@@ -22,10 +25,24 @@ const initialState : StoreState = {
   availableGenres: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
+  reviews: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(loadFilm, (state, action) => {
+      state.selectedFilm = action.payload;
+    })
+    .addCase(loadSimilarFilms, (state, action) => {
+      state.similarFilms = action.payload;
+    })
+    .addCase(loadFavoriteFilms, (state, action) => {
+      state.favoriteFilms = action.payload;
+      state.favoriteFilmsCount = action.payload.length;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
+    })
     .addCase(getFilms, (state) => {
       state.filmsByGenre = state.selectedGenre === INITIAL_GENRE ?
         state.films :

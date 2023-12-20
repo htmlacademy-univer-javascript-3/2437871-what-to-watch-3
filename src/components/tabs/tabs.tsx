@@ -35,7 +35,7 @@ export function Tabs({film}: TabsProps) {
       case TabEnum.Overview:
         return <MovieOverview film={film}/>;
       case TabEnum.Reviews:
-        return <MovieReviews reviews={[]}/>;
+        return <MovieReviews/>;
     }
   };
 

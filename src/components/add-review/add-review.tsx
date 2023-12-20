@@ -1,18 +1,27 @@
-import {useState} from 'react';
+import {FormEvent, useState} from 'react';
+import {fetchAddReviewAction} from '../../store/api-actions.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 
 export function AddReview() {
   const [text, setText] = useState<string>('');
   const [rating, setRating] = useState<number>(10);
+  const dispatch = useAppDispatch();
+  const film = useAppSelector((state) => state.selectedFilm);
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    dispatch(fetchAddReviewAction({comment: text, filmId: film?.id, rating: rating}));
+  };
 
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form action="" className="add-review__form" onSubmit={handleSubmit}>
         <div className="rating">
           <div className="rating__stars">
             {Array.from({length: 10}).map((_, index) => (
               <>
                 <input className="rating__input" id={`star-${10 - index}`} type="radio" name="rating"
-                  value={10 - rating} onChange={(evt) => setRating(+evt.target.value)}
+                  value={10 - rating} onChange={() => setRating(10 - index)}
                 />
                 <label className="rating__label" htmlFor={`star-${10 - index}`}>Rating {10 - index}</label>
               </>
