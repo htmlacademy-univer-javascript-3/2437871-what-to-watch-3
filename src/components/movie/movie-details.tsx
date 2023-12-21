@@ -4,7 +4,7 @@ type MovieDetailsProps = {
   film: Film;
 }
 
-function MovieDetails({film}: MovieDetailsProps) {
+export function MovieDetails({film}: MovieDetailsProps) {
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">
@@ -15,7 +15,7 @@ function MovieDetails({film}: MovieDetailsProps) {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">{film.starring
-            .map((actor) => <>{actor}<br/></>)}
+            .map((actor, index) => <span key={index}>{actor}<br/></span>)}
           </span>
         </p>
       </div>
@@ -36,5 +36,3 @@ function MovieDetails({film}: MovieDetailsProps) {
       </div>
     </div>);
 }
-
-export default MovieDetails;

@@ -159,3 +159,16 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     dropToken();
   },
 );
+
+export const fetchChangeFavoriteFilmsAction = createAsyncThunk<Film, { filmId: string; status : number }, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchChangeFavoriteFilm',
+  async ({filmId, status}, {extra: api}) => {
+    const {data} = await api.post<Film>(`favorite/${filmId}/${status}`);
+
+    return data;
+  },
+);

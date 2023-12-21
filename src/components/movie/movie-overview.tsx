@@ -4,7 +4,7 @@ type MovieOverviewProps = {
   film: Film;
 }
 
-function MovieOverview({film}: MovieOverviewProps) {
+export function MovieOverview({film}: MovieOverviewProps) {
   return (
     <>
       <div className="film-rating">
@@ -25,5 +25,3 @@ function MovieOverview({film}: MovieOverviewProps) {
     </>
   );
 }
-
-export default MovieOverview;
