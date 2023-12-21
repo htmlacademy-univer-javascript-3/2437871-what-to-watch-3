@@ -1,26 +1,17 @@
 import {Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from './constants.ts';
+import {AppRoute} from './constants.ts';
 import MainPage from './pages/main-page';
 import SignInPage from './pages/sing-in-page';
-import PrivateRoute from './components/private-route/private-route.tsx';
 import MyListPage from './pages/my-list-page';
 import MoviePage from './pages/movie-page';
 import AddReviewPage from './pages/add-review-page';
 import PlayerPage from './pages/player-page';
 import PageNotFoundError from './components/errors/page-not-found';
-import Spinner from './components/spinner';
-import {useAppSelector} from './hooks';
 import HistoryRouter from './components/history-route';
 import browserHistory from './browser-history.ts';
+import PrivateRoute from './components/private-route';
 
 function App() {
-  const isLoading = useAppSelector((state) => state.isLoading);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-
-  if (authorizationStatus === AuthorizationStatus.Unknown || isLoading) {
-    return (<Spinner/>);
-  }
-
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
@@ -31,7 +22,7 @@ function App() {
         <Route path={AppRoute.Login} element={<SignInPage/>}/>
         <Route path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={authorizationStatus}>
+            <PrivateRoute>
               <MyListPage />
             </PrivateRoute>
           }

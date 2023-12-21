@@ -1,12 +1,13 @@
 import {FormEvent, useState} from 'react';
 import {fetchAddReviewAction} from '../../store/api-actions.ts';
 import {useAppDispatch, useAppSelector} from '../../hooks';
+import {getFilm} from '../../store/film-process/selectors.ts';
 
 export function AddReview() {
   const [text, setText] = useState<string>('');
   const [rating, setRating] = useState<number>(10);
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.selectedFilm);
+  const film = useAppSelector(getFilm);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

@@ -1,16 +1,30 @@
 import {useNavigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../constants.ts';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {fetchFilmAction, fetchSimilarFilmsAction} from '../../store/api-actions.ts';
+import {getFilm} from '../../store/film-process/selectors.ts';
+import PageNotFoundError from '../../components/errors/page-not-found';
 
 export function PlayerPage() {
   const params = useParams();
   const navigate = useNavigate();
-  const films = useAppSelector((state) => state.films);
-  const film = films.filter((f) => f.id === params.id)[0];
+  const dispatch = useAppDispatch();
+
+  const film = useAppSelector(getFilm);
+
+  useEffect(() => {
+    dispatch(fetchFilmAction(params.id));
+    dispatch(fetchSimilarFilmsAction(params.id));
+  }, [dispatch, params]);
+
+  if (film === null) {
+    return (<PageNotFoundError/>);
+  }
 
   return (
     <div className="player">
-      <video src={film.previewVideoLink} className="player__video" poster={film.previewImage}></video>
+      <video src={film.videoLink} className="player__video" poster={film.posterImage}></video>
 
       <button type="button" className="player__exit" onClick={() => navigate(`${AppRoute.Movie }/${film.id}`)}>Exit</button>
 
