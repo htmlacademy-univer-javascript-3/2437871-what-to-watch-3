@@ -1,11 +1,13 @@
 import cn from 'classnames';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeGenre} from '../../store/action.ts';
+import {getAvailableGenres, getGenre} from '../../store/film-process/selectors.ts';
+import {changeGenre} from '../../store/film-process/film-process.ts';
 
 export function GenreList() {
-  const selectedGenre = useAppSelector((state) => state.selectedGenre);
-  const allGenres = useAppSelector((state) => state.availableGenres);
+  const selectedGenre = useAppSelector(getGenre);
+  const allGenres = useAppSelector(getAvailableGenres);
   const dispatch = useAppDispatch();
+
   return (
     <>
       <h2 className="catalog__title visually-hidden">Catalog</h2>

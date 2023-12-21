@@ -1,5 +1,5 @@
 import {useAppDispatch} from '../../hooks';
-import {showMoreFilms} from '../../store/action.ts';
+import {showMoreFilms} from '../../store/film-process/film-process.ts';
 
 export function ShowMore() {
   const dispatch = useAppDispatch();

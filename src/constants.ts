@@ -16,6 +16,12 @@ export enum AppRoute {
   NotFound = '*',
 }
 
+export enum NameSpace {
+  User = 'USER',
+  Films = 'FILMS',
+  Review = 'REVIEW',
+}
+
 export enum TabEnum {
   Overview = 'Overview',
   Details = 'Details',

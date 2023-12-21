@@ -2,10 +2,12 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {logoutAction} from '../../store/api-actions.ts';
 import {Link} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../constants.ts';
+import {getAuthorizationStatus, getUser} from '../../store/user-process/selectors.ts';
+
 export function User() {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const user = useAppSelector((state) => state.user);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const user = useAppSelector(getUser);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return (

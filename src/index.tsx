@@ -19,7 +19,6 @@ const root = ReactDOM.createRoot(
 
 store.dispatch(fetchAllFilmsAction());
 store.dispatch(fetchPromoFilmAction());
-store.dispatch(fetchPromoFilmAction());
 store.dispatch(fetchFavoriteFilmsAction());
 store.dispatch(checkAuthAction());
 

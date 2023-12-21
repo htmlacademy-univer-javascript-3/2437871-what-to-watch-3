@@ -9,15 +9,24 @@ import {fetchFilmAction, fetchSimilarFilmsAction} from '../../store/api-actions.
 import PageNotFoundError from '../../components/errors/page-not-found';
 import Tabs from '../../components/tabs';
 import {AppRoute, AuthorizationStatus} from '../../constants.ts';
+import Spinner from '../../components/spinner';
+import {
+  getFavoriteFilmsCount,
+  getFilm,
+  getLoadingStatus,
+  getSimilarFilms
+} from '../../store/film-process/selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 
 export function MoviePage() {
   const params = useParams();
   const dispatch = useAppDispatch();
 
-  const film = useAppSelector((state) => state.selectedFilm);
-  const similarFilms = useAppSelector((state) => state.similarFilms);
-  const favoritesCount = useAppSelector((state) => state.favoriteFilmsCount);
-  const status = useAppSelector((state) => state.authorizationStatus);
+  const film = useAppSelector(getFilm);
+  const similarFilms = useAppSelector(getSimilarFilms);
+  const favoritesCount = useAppSelector(getFavoriteFilmsCount);
+  const status = useAppSelector(getAuthorizationStatus);
+  const isLoading = useAppSelector(getLoadingStatus);
 
 
   useEffect(() => {
@@ -27,6 +36,10 @@ export function MoviePage() {
 
   if (film === null) {
     return (<PageNotFoundError/>);
+  }
+
+  if (status === AuthorizationStatus.Unknown || isLoading) {
+    return (<Spinner/>);
   }
 
   return (

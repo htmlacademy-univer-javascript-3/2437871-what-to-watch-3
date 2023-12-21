@@ -3,7 +3,7 @@ import {AppRoute, EXECUTION_DELAY} from '../../constants.ts';
 import VideoPlayer from '../video-player';
 import {useState} from 'react';
 import {useAppDispatch} from '../../hooks';
-import {resetShowMore} from '../../store/action.ts';
+import {resetShowMore} from '../../store/film-process/film-process.ts';
 import {FilmShortInfo} from '../../types/film.ts';
 
 export type FilmCardProps = {

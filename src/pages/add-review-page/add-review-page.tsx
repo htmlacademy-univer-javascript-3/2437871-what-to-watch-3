@@ -1,20 +1,24 @@
 import User from '../../components/user';
 import Logo from '../../components/logo';
 import AddReview from '../../components/add-review';
-import {Link, useParams} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {AppRoute} from '../../constants.ts';
 import {useAppSelector} from '../../hooks';
+import {getFilm} from '../../store/film-process/selectors.ts';
+import PageNotFoundError from '../../components/errors/page-not-found';
 
 export function AddReviewPage() {
-  const params = useParams();
-  const films = useAppSelector((state) => state.films);
-  const film = films.filter((f) => f.id === params.id)[0];
+  const film = useAppSelector(getFilm);
+
+  if (film === null) {
+    return (<PageNotFoundError/>);
+  }
 
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.previewImage} alt={film.name}/>
+          <img src={film.posterImage} alt={film.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -37,7 +41,7 @@ export function AddReviewPage() {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film.previewImage} alt={film.name} width={218} height={327}/>
+          <img src={film.posterImage} alt={film.name} width={218} height={327}/>
         </div>
       </div>
 
