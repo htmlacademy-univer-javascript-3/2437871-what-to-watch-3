@@ -4,7 +4,7 @@ import {fetchReviewsAction} from '../../store/api-actions.ts';
 import {getFilm} from '../../store/film-process/selectors.ts';
 import {getReviews} from '../../store/review-process/selectors.ts';
 
-function MovieReviews() {
+export function MovieReviews() {
   const selectedFilm = useAppSelector(getFilm);
   const reviews = useAppSelector(getReviews);
   const dispatch = useAppDispatch();
@@ -33,5 +33,3 @@ function MovieReviews() {
     </div>
   );
 }
-
-export default MovieReviews;

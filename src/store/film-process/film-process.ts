@@ -1,6 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {
-  fetchAllFilmsAction, fetchFavoriteFilmsAction, fetchFilmAction, fetchPromoFilmAction, fetchSimilarFilmsAction,
+  fetchAllFilmsAction,
+  fetchChangeFavoriteFilmsAction,
+  fetchFavoriteFilmsAction,
+  fetchFilmAction,
+  fetchPromoFilmAction,
+  fetchSimilarFilmsAction,
 } from '../api-actions';
 import {INITIAL_FILMS_COUNT, INITIAL_GENRE, NameSpace} from '../../constants.ts';
 import {FilmsProcess} from '../../types/state.ts';
@@ -56,13 +61,9 @@ export const filmsProcess = createSlice({
         state.similarFilms = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchFavoriteFilmsAction.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(fetchFavoriteFilmsAction.fulfilled, (state, action) => {
         state.favoriteFilms = action.payload;
         state.favoriteFilmsCount = action.payload.length;
-        state.isLoading = false;
       })
       .addCase(fetchFilmAction.pending, (state) => {
         state.isLoading = true;
@@ -77,6 +78,14 @@ export const filmsProcess = createSlice({
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
         state.isLoading = false;
+      })
+      .addCase(fetchChangeFavoriteFilmsAction.fulfilled, (state, action) => {
+        if (state.selectedFilm?.id === action.payload.id) {
+          state.selectedFilm.isFavorite = action.payload.isFavorite;
+        }
+        if (state.promoFilm?.id === action.payload.id) {
+          state.promoFilm.isFavorite = action.payload.isFavorite;
+        }
       });
   }
 });

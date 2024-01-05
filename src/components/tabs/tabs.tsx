@@ -2,9 +2,7 @@ import {TabEnum} from '../../constants.ts';
 import {useState} from 'react';
 import cn from 'classnames';
 import {Film} from '../../types/film.ts';
-import MovieOverview from '../movie/movie-overview.tsx';
-import MovieDetails from '../movie/movie-details.tsx';
-import MovieReviews from '../movie/movie-reviews.tsx';
+import {MovieOverview, MovieDetails, MovieReviews} from '../movie';
 
 
 type TabProps = {

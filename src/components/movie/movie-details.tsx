@@ -4,7 +4,7 @@ type MovieDetailsProps = {
   film: Film;
 }
 
-function MovieDetails({film}: MovieDetailsProps) {
+export function MovieDetails({film}: MovieDetailsProps) {
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">
@@ -36,5 +36,3 @@ function MovieDetails({film}: MovieDetailsProps) {
       </div>
     </div>);
 }
-
-export default MovieDetails;

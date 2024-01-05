@@ -8,7 +8,6 @@ import {useEffect} from 'react';
 import {AuthorizationStatus} from '../../constants.ts';
 import {getFilms} from '../../store/film-process/film-process.ts';
 import {
-  getFavoriteFilmsCount,
   getFilmsByGenre,
   getFilmsCount,
   getGenre,
@@ -19,6 +18,7 @@ import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 import ShowMore from '../../components/show-more';
 import PageNotFoundError from '../../components/errors/page-not-found';
 import Spinner from '../../components/spinner';
+import {MoviePlay, FavoriteMovieList} from '../../components/movie';
 
 export function MainPage(){
   const dispatch = useAppDispatch();
@@ -26,7 +26,6 @@ export function MainPage(){
   const selectedGenre = useAppSelector(getGenre);
   const filmsCount = useAppSelector(getFilmsCount);
   const promoFilm = useAppSelector(getPromoFilm);
-  const favoriteFilmsCount = useAppSelector(getFavoriteFilmsCount);
   const isLoading = useAppSelector(getLoadingStatus);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
@@ -34,12 +33,12 @@ export function MainPage(){
     dispatch(getFilms());
   }, [selectedGenre, dispatch]);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isLoading) {
-    return (<Spinner/>);
-  }
-
   if (promoFilm === null) {
     return (<PageNotFoundError/>);
+  }
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isLoading) {
+    return (<Spinner/>);
   }
 
   return (
@@ -69,18 +68,8 @@ export function MainPage(){
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span className="film-card__count">{favoriteFilmsCount}</span>
-                </button>
+                <MoviePlay film={promoFilm}/>
+                <FavoriteMovieList film={promoFilm}/>
               </div>
             </div>
           </div>
