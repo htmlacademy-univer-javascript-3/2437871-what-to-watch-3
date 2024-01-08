@@ -33,7 +33,13 @@ function App() {
           }
         />
         <Route path={`${AppRoute.Movie }/:id`} element={<MoviePage/>}/>
-        <Route path={`${AppRoute.Movie }/:id${ AppRoute.Review}`} element={<AddReviewPage/>}/>
+        <Route path={`${AppRoute.Movie }/:id${AppRoute.Review}`}
+          element={
+            <PrivateRoute>
+              <AddReviewPage/>
+            </PrivateRoute>
+          }
+        />
         <Route path={`${AppRoute.Player }/:id`} element={<PlayerPage/>}/>
         <Route path={AppRoute.NotFound} element={<PageNotFoundError/>}/>
       </Routes>

@@ -1,21 +1,38 @@
 import {FormEvent, useRef} from 'react';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {loginAction} from '../../store/api-actions.ts';
+import {useNavigate} from 'react-router-dom';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {AppRoute, AuthorizationStatus} from '../../constants.ts';
+import {toast} from 'react-toastify';
 
 export function SignInForm() {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
+
+  const authStatus = useAppSelector(getAuthorizationStatus);
+
+  if (authStatus === AuthorizationStatus.Auth) {
+    navigate(AppRoute.Main);
+  }
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (emailRef.current !== null && passwordRef.current !== null) {
-      dispatch(loginAction({
-        login: emailRef.current.value,
-        password: passwordRef.current.value
-      }));
+      if (/[0-9]/.test(passwordRef.current.value) &&
+        /[a-zA-Z]/.test(passwordRef.current.value) &&
+        passwordRef.current.value.length > 0) {
+        dispatch(loginAction({
+          login: emailRef.current.value,
+          password: passwordRef.current.value
+        }));
+      } else {
+        toast.warn('Password should contain 1 letter and 1 number');
+      }
     }
   };
 

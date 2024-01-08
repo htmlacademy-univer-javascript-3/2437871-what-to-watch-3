@@ -2,15 +2,20 @@ import {FormEvent, useState} from 'react';
 import {fetchAddReviewAction} from '../../store/api-actions.ts';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {getFilm} from '../../store/film-process/selectors.ts';
+import {toast} from 'react-toastify';
 
 export function AddReview() {
   const [text, setText] = useState<string>('');
-  const [rating, setRating] = useState<number>(10);
+  const [rating, setRating] = useState<number>(8);
   const dispatch = useAppDispatch();
   const film = useAppSelector(getFilm);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    if (text.length < 50 || text.length > 400) {
+      toast.warn('Text length must be more than 50 and less than 400 characters');
+      return;
+    }
     dispatch(fetchAddReviewAction({comment: text, filmId: film?.id, rating: rating}));
   };
 
@@ -22,7 +27,7 @@ export function AddReview() {
             {Array.from({length: 10}).map((_, index) => (
               <>
                 <input className="rating__input" id={`star-${10 - index}`} type="radio" name="rating"
-                  value={10 - rating} onChange={() => setRating(10 - index)}
+                  value={10 - rating} checked={rating === (10 - index)} onChange={() => setRating(10 - index)}
                 />
                 <label className="rating__label" htmlFor={`star-${10 - index}`}>Rating {10 - index}</label>
               </>

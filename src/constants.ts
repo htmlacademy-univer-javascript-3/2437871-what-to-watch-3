@@ -28,6 +28,8 @@ export enum TabEnum {
   Reviews = 'Reviews',
 }
 
+export const SIMILAR_FILMS_COUNT = 4;
+
 export const INITIAL_GENRE = 'All genres';
 
 export const EXECUTION_DELAY = 1000;
