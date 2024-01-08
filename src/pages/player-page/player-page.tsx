@@ -22,14 +22,8 @@ export function PlayerPage() {
 
   useEffect(() => {
     dispatch(fetchFilmAction(params.id));
-    if (videoRef.current !== null) {
-      videoRef.current.addEventListener('loadeddata', () => setIsLoadingFilm(false));
-
-      if (!isPlaying) {
-        videoRef.current.load();
-      }
-    }
-  }, [dispatch, params, isPlaying]);
+    setIsLoadingFilm(false);
+  }, [dispatch, params]);
 
   if (isLoading) {
     return (<Spinner/>);

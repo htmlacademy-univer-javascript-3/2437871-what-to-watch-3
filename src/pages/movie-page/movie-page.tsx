@@ -8,15 +8,16 @@ import {useEffect} from 'react';
 import {fetchFilmAction, fetchSimilarFilmsAction} from '../../store/api-actions.ts';
 import PageNotFoundError from '../../components/errors/page-not-found';
 import Tabs from '../../components/tabs';
-import {AppRoute, AuthorizationStatus} from '../../constants.ts';
+import {AppRoute, AuthorizationStatus, SIMILAR_FILMS_COUNT} from '../../constants.ts';
 import Spinner from '../../components/spinner';
 import {
-  getFavoriteFilmsCount,
   getFilm,
   getLoadingStatus,
   getSimilarFilms
 } from '../../store/film-process/selectors.ts';
 import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import AddButton from '../../components/add-button';
+import PlayButton from '../../components/play-button';
 
 export function MoviePage() {
   const params = useParams();
@@ -24,7 +25,6 @@ export function MoviePage() {
 
   const film = useAppSelector(getFilm);
   const similarFilms = useAppSelector(getSimilarFilms);
-  const favoritesCount = useAppSelector(getFavoriteFilmsCount);
   const status = useAppSelector(getAuthorizationStatus);
   const isLoading = useAppSelector(getLoadingStatus);
 
@@ -67,18 +67,8 @@ export function MoviePage() {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span className="film-card__count">{favoritesCount}</span>
-                </button>
+                <PlayButton film={film}/>
+                <AddButton film={film}/>
                 {status === AuthorizationStatus.Auth &&
                   <Link to={`${AppRoute.Movie}/${film.id}${AppRoute.Review}`} className="btn film-card__button">Add
                     review
@@ -105,7 +95,7 @@ export function MoviePage() {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsContainer films={similarFilms}/>
+          <FilmsContainer films={similarFilms} filmsCount={SIMILAR_FILMS_COUNT}/>
         </section>
 
         <Footer/>

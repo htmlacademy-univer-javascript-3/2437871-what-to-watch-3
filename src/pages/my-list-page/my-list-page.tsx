@@ -13,15 +13,13 @@ export function MyListPage() {
     <div className="user-page">
       <header className="page-header user-page__head">
         <Logo/>
-
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{filmsCount}</span></h1>
         <User/>
       </header>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        <FilmsContainer films={films}/>
+        <FilmsContainer films={films} filmsCount={filmsCount}/>
       </section>
 
       <Footer/>

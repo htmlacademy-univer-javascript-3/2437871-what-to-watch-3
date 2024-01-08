@@ -12,6 +12,11 @@ export function MovieReviews() {
     dispatch(fetchReviewsAction(selectedFilm?.id));
   }, [dispatch, selectedFilm]);
 
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  };
+
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
@@ -22,7 +27,7 @@ export function MovieReviews() {
 
               <footer className="review__details">
                 <cite className="review__author">{review.user}</cite>
-                <time className="review__date" dateTime={review.date}>{review.date}</time>
+                <time className="review__date" dateTime={review.date}>{formatDate(review.date)}</time>
               </footer>
             </blockquote>
 

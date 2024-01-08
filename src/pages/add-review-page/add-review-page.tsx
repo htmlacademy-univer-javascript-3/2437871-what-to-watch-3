@@ -1,14 +1,28 @@
 import User from '../../components/user';
 import Logo from '../../components/logo';
 import AddReview from '../../components/add-review';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {AppRoute} from '../../constants.ts';
-import {useAppSelector} from '../../hooks';
-import {getFilm} from '../../store/film-process/selectors.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {getFilm, getLoadingStatus} from '../../store/film-process/selectors.ts';
 import PageNotFoundError from '../../components/errors/page-not-found';
+import Spinner from '../../components/spinner';
+import {useEffect} from 'react';
+import {fetchFilmAction} from '../../store/api-actions.ts';
 
 export function AddReviewPage() {
+  const params = useParams();
+  const dispatch = useAppDispatch();
   const film = useAppSelector(getFilm);
+  const isLoading = useAppSelector(getLoadingStatus);
+
+  useEffect(() => {
+    dispatch(fetchFilmAction(params.id));
+  }, [dispatch, params]);
+
+  if (isLoading) {
+    return (<Spinner/>);
+  }
 
   if (film === null) {
     return (<PageNotFoundError/>);
@@ -18,7 +32,7 @@ export function AddReviewPage() {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.posterImage} alt={film.name}/>
+          <img src={film.backgroundImage} alt={film.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>

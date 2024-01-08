@@ -3,15 +3,18 @@ import {getFavoriteFilmsCount} from '../../store/film-process/selectors.ts';
 import {Film, FilmPromo} from '../../types/film.ts';
 import {useEffect} from 'react';
 import {fetchChangeFavoriteFilmsAction, fetchFavoriteFilmsAction} from '../../store/api-actions.ts';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {AuthorizationStatus} from '../../constants.ts';
 
-type FavoriteMovieListProps = {
+type AddButtonProps = {
   film: Film | FilmPromo;
 }
 
-export function FavoriteMovieList(props: FavoriteMovieListProps) {
+export function AddButton(props: AddButtonProps) {
   const dispatch = useAppDispatch();
   const favoriteFilmsCount = useAppSelector(getFavoriteFilmsCount);
   const film = props.film;
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     dispatch(fetchFavoriteFilmsAction());
@@ -29,7 +32,7 @@ export function FavoriteMovieList(props: FavoriteMovieListProps) {
         {film.isFavorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
       </svg>
       <span>My list</span>
-      <span className="film-card__count">{favoriteFilmsCount}</span>
+      <span className="film-card__count">{authStatus === AuthorizationStatus.Auth ? favoriteFilmsCount : 0}</span>
     </button>
   );
 }

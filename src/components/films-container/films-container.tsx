@@ -1,15 +1,12 @@
 import FilmCard from '../film-card';
 import {Films} from '../../types/film.ts';
-import {getFilmsCount} from '../../store/film-process/selectors.ts';
-import {useAppSelector} from '../../hooks';
 
 export type FilmsContainerProps = {
   films: Films;
+  filmsCount: number;
 }
 
-export function FilmsContainer({films}: FilmsContainerProps) {
-  const filmsCount = useAppSelector(getFilmsCount);
-
+export function FilmsContainer({films, filmsCount}: FilmsContainerProps) {
   return (
     <div className="catalog__films-list">
       {films.slice(0, filmsCount).map((film) => (

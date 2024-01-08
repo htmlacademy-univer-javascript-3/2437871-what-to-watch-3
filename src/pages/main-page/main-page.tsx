@@ -6,7 +6,7 @@ import FilmsContainer from '../../components/films-container';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {AuthorizationStatus} from '../../constants.ts';
-import {getFilms} from '../../store/film-process/film-process.ts';
+import {getFilms, resetShowMore} from '../../store/film-process/film-process.ts';
 import {
   getFilmsByGenre,
   getFilmsCount,
@@ -18,7 +18,8 @@ import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 import ShowMore from '../../components/show-more';
 import PageNotFoundError from '../../components/errors/page-not-found';
 import Spinner from '../../components/spinner';
-import {MoviePlay, FavoriteMovieList} from '../../components/movie';
+import PlayButton from '../../components/play-button';
+import AddButton from '../../components/add-button';
 
 export function MainPage(){
   const dispatch = useAppDispatch();
@@ -32,6 +33,10 @@ export function MainPage(){
   useEffect(() => {
     dispatch(getFilms());
   }, [selectedGenre, dispatch]);
+
+  useEffect(() => {
+    dispatch(resetShowMore());
+  }, [dispatch]);
 
   if (promoFilm === null) {
     return (<PageNotFoundError/>);
@@ -68,8 +73,8 @@ export function MainPage(){
               </p>
 
               <div className="film-card__buttons">
-                <MoviePlay film={promoFilm}/>
-                <FavoriteMovieList film={promoFilm}/>
+                <PlayButton film={promoFilm}/>
+                <AddButton film={promoFilm}/>
               </div>
             </div>
           </div>
@@ -79,7 +84,7 @@ export function MainPage(){
       <div className="page-content">
         <section className="catalog">
           <GenresList/>
-          <FilmsContainer films={filmsByGenre}/>
+          <FilmsContainer films={filmsByGenre} filmsCount={filmsCount}/>
           {filmsByGenre.length >= filmsCount && <ShowMore/>}
         </section>
 
