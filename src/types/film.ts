@@ -14,7 +14,7 @@ export type FilmPromo = {
   backgroundImage: string;
   videoLink: string;
   genre: string;
-  year: number;
+  released: number;
   isFavorite: boolean;
 }
 
@@ -32,7 +32,7 @@ export type Film = {
   starring: string[];
   runTime: number;
   genre: string;
-  year: number;
+  released: number;
   isFavorite: boolean;
 }
 
