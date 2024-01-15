@@ -26,7 +26,7 @@ export function MovieOverview({film}: MovieOverviewProps) {
   return (
     <>
       <div className="film-rating">
-        <div className="film-rating__score">{film.rating}</div>
+        <div className="film-rating__score">{film.rating.toFixed(1)}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">{ratingFilm()}</span>
           <span className="film-rating__count">{film.scoresCount}</span>
