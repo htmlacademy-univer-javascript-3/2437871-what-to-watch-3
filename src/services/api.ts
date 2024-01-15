@@ -10,7 +10,7 @@ type DetailMessageType = {
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: false,
+  [StatusCodes.INTERNAL_SERVER_ERROR]: true,
   [StatusCodes.NOT_FOUND]: true
 };
 
@@ -40,6 +40,9 @@ export const createAPI = (): AxiosInstance => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
+      if (error.response && error.response.status === 0){
+        toast.warn('Server is not available');
+      }
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
 
